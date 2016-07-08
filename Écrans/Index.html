@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Admin Theme v3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link href="css/stats.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/angular.js"></script>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+    <script>
+        angular.module('sortApp', [])
+
+.controller('mainController', function ($scope) {
+    $scope.sortType = 'name'; // set the default sort type
+    $scope.sortReverse = false;  // set the default sort order
+    $scope.searchFish = '';     // set the default search/filter term
+
+    // create the list of sushi rolls
+    $scope.sushi = [
+      { name: 'Michel Gagnon', Status: 'Externe', tastiness: 2, CouponsTaxi: 3, CouponsBus: 7, },
+      { name: 'Jacob Munger', Status: 'Interne', tastiness: 4, CouponsTaxi: 4, CouponsBus: 7, },
+      { name: 'Larry Morin', Status: 'Interne', tastiness: 7, CouponsTaxi: 8, CouponsBus: 7, },
+      { name: 'Michel Gagnon', Status: 'Externe', tastiness: 6, CouponsTaxi: 9, CouponsBus: 7, }
+    ];
+
+});
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1><a href="Index.html">Maison d’Accueil pour sans-abri</a></h1>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img src="MSAIMAGE.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="navbar navbar-inverse" role="banner">
+                        <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+                                    <ul class="dropdown-menu animated fadeInUp">
+                                        <li><a href="profile.html">Profile</a></li>
+                                        <li><a href="login.html">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="sidebar content-box" style="display: block;">
+                    <ul class="nav">
+                        <!-- main menu -->
+                        <li class="current"><a href="Index.html"><i class="glyphicon glyphicon-home"></i> Accueil</a></li>
+                        <li><a href="Suivis.html"><i class="fa fa-flag" aria-hidden="true"></i> Suivis</a></li>
+                        <li><a href="inscription.html"><i class="glyphicon glyphicon-plus"></i> Inscription</a></li>
+                        
+
+                        
+                        <li><a href="Chambres.html"><i class="fa fa-bed" aria-hidden="true"></i> Chambres</a></li>
+                        <li><a href="stats.html"><i class="glyphicon glyphicon-stats"></i> statistics</a></li>
+                        <li class="submenu"><a href="Admin.html"><i class="fa fa-male" aria-hidden="true"></i> Admin</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="container" ng-app="sortApp" ng-controller="mainController">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Rechercher" ng-model="searchFish">
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-bordered table-striped">
+
+                        <thead>
+                            <tr>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                                        Bénéficiaire
+                                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'Status'; sortReverse = !sortReverse">
+                                        Status
+                                        <span ng-show="sortType == 'Status' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'Status' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+                                        Taste Level
+                                        <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'CouponsSouper'; sortReverse = !sortReverse">
+                                        Coupons Souper
+                                        <span ng-show="sortType == 'CouponsSouper' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'CouponsSouper' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'CouponsSoupe'; sortReverse = !sortReverse">
+                                        Coupons Soupe
+                                        <span ng-show="sortType == 'CouponsSoupe' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'CouponsSoupe' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'CouponsBus'; sortReverse = !sortReverse">
+                                        Coupons Bus
+                                        <span ng-show="sortType == 'CouponsBus' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'CouponsBus' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'CouponsTaxi'; sortReverse = !sortReverse">
+                                        Coupons Taxi
+                                        <span ng-show="sortType == 'CouponsTaxi' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'CouponsTaxi' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'CouponsTaxi'; sortReverse = !sortReverse">
+                                        Save
+                                        
+                                    </a>
+                                </td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
+                                <td><a href="1.html" >{{ roll.name }}</a></td>
+                                <td>{{ roll.Status }}</td>
+                                <td>{{ roll.tastiness }}</td>
+                                <td><input type="number" value="{{ roll.CouponsTaxi}}" /></td>
+                                <td><input type="number" value="{{ roll.CouponsBus}}" /></td>
+                                <td><input type="number" value="{{ roll.CouponsSoupe}}" /></td>
+                                <td><input type="text" value="{{ roll.CouponsSouper}}$" /></td>
+                                <td><a href="#"><i class="glyphicon glyphicon-save"></i></a></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <p class="text-center text-muted">
+                        <a href="#" target="_blank">Read the Tutorial</a>
+                    </p>
+
+                    <p class="text-center">
+                        by <a href="http://scotch.io" target="_blank">scotch.io</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="copy text-center">
+                Copyright 2014 <a href='#'>Website</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>
